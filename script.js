@@ -101,26 +101,20 @@ keys.forEach((key) => {
 // Hint button event listener with debug logs
 hintButton.addEventListener("click", () => {
   if (playable) {
-    // Get unused letters
     const unusedLetters = selectedWord.split("").filter(letter => !correctLetters.includes(letter));
-    // console.log('Unused Letters:', unusedLetters); // Debug log
     if (unusedLetters.length > 0) {
       const hintLetter = unusedLetters[Math.floor(Math.random() * unusedLetters.length)];
-      // console.log('Hint Letter:', hintLetter); // Debug log
-
-      // Add hint letter to correct letters
       if (!correctLetters.includes(hintLetter)) {
         correctLetters.push(hintLetter);
         displayWord();
       } else {
-        showNotification(); // Notify if hint letter was already guessed
+        showNotification(); 
       }
     } else {
-      showNotification(); // No more hints available
+      showNotification(); 
     }
   }
 });
-
 
 
 
