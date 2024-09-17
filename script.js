@@ -100,6 +100,7 @@ keys.forEach((key) => {
 
 // Hint button event listener with debug logs
 hintButton.addEventListener("click", () => {
+  console.log("Hint button clicked"); // Add this for debugging
   if (playable) {
     const unusedLetters = selectedWord.split("").filter(letter => !correctLetters.includes(letter));
     if (unusedLetters.length > 0) {
@@ -108,14 +109,13 @@ hintButton.addEventListener("click", () => {
         correctLetters.push(hintLetter);
         displayWord();
       } else {
-        showNotification(); 
+        showNotification();
       }
     } else {
-      showNotification(); 
+      showNotification();
     }
   }
 });
-
 
 
 
@@ -157,6 +157,26 @@ themeToggle.addEventListener("click", () => {
   document.body.classList.toggle("dark-theme");
 });
 
+
+hintButton.addEventListener("click", handleHint);
+hintButton.addEventListener("touchstart", handleHint); // For mobile devices
+
+function handleHint() {
+  if (playable) {
+    const unusedLetters = selectedWord.split("").filter(letter => !correctLetters.includes(letter));
+    if (unusedLetters.length > 0) {
+      const hintLetter = unusedLetters[Math.floor(Math.random() * unusedLetters.length)];
+      if (!correctLetters.includes(hintLetter)) {
+        correctLetters.push(hintLetter);
+        displayWord();
+      } else {
+        showNotification();
+      }
+    } else {
+      showNotification();
+    }
+  }
+}
 
 
 
